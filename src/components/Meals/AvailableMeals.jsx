@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import classes from './AvailableMeals.module.css';
 
 import MealItem from './MealItem/MealItem';
 import Card from '../UI/Card';
 
-import dummyMeals from './dummy-meals'
+import dummyMeals from './dummy-meals';
 
 const AvailableMeals = () => {
-  const [meals, setMeals] = useState(dummyMeals);
+  const [meals] = useState(dummyMeals);
 
   // FETCH FROM INTERNET
   //
