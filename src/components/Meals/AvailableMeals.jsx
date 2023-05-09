@@ -4,57 +4,64 @@ import classes from './AvailableMeals.module.css';
 import MealItem from './MealItem/MealItem';
 import Card from '../UI/Card';
 
+import dummyMeals from './dummy-meals'
+
 const AvailableMeals = () => {
-  const [meals, setMeals] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [meals, setMeals] = useState(dummyMeals);
 
-  useEffect(() => {
-    const fetchMeals = async () => {
-      setIsLoading(true);
+  // FETCH FROM INTERNET
+  //
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState(null);
 
-      const response = await fetch(
-        'https://react-test-3b548-default-rtdb.europe-west1.firebasedatabase.app/meals.json',
-      );
+  // useEffect(() => {
+  //   const fetchMeals = async () => {
+  //     setIsLoading(true);
 
-      if (!response.ok) throw new Error('Something went wrong!');
+  //     const response = await fetch(
+  //       // 'https://react-test-3b548-default-rtdb.europe-west1.firebasedatabase.app/meals.json',
+  //       './dummy-meals.json'
+  //     );
 
-      const data = await response.json();
+  //     if (!response.ok) throw new Error('Something went wrong!');
 
-      const loadedMeals = [];
+  //     const data = await response.json();
+  //     console.log(data);
 
-      for (const key in data) {
-        loadedMeals.push({
-          id: key,
-          ...data[key],
-        });
-      }
+  //     const loadedMeals = [];
 
-      setMeals(loadedMeals);
-      setIsLoading(false);
-    };
+  //     for (const key in data) {
+  //       loadedMeals.push({
+  //         id: key,
+  //         ...data[key],
+  //       });
+  //     }
 
-    fetchMeals().catch((error) => {
-      setIsLoading(false);
-      setError(error.message);
-    });
-  }, []);
+  //     setMeals(loadedMeals);
+  //     setIsLoading(false);
+  //   };
 
-  if (isLoading) {
-    return (
-      <section className={classes.mealsLoading}>
-        <p>Loading...</p>
-      </section>
-    );
-  }
+  //   fetchMeals().catch((error) => {
+  //     setIsLoading(false);
+  //     setError(error.message);
+  //   });
+  // }, []);
 
-  if (error) {
-    return (
-      <section className={classes.mealsError}>
-        <p>{error}</p>
-      </section>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <section className={classes.mealsLoading}>
+  //       <p>Loading...</p>
+  //     </section>
+  //   );
+  // }
+
+  // if (error) {
+  //   return (
+  //     <section className={classes.mealsError}>
+  //       <p>{error}</p>
+  //     </section>
+  //   );
+  // }
 
   const mealsList = meals.map((meal) => (
     <MealItem
